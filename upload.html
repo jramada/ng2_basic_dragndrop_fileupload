@@ -10,7 +10,8 @@ Style inspired by: https://css-tricks.com/drag-and-drop-file-uploading/
           <div class="ui-grid-col-2">
             Files:
           </div>
-
+          
+          <!-- in case of dinossaur browser :) -->
           <div *ngIf="!advancedUpload" class="ui-grid-col-2">
             <input #myinput type="file" id="selectedFile" style="display: none;" (change)="fileChangeEvent($event)" multiple />
             <button type="button" label="Select File(s)" value="Select File(s)" onclick="document.getElementById('selectedFile').click();"> </button>

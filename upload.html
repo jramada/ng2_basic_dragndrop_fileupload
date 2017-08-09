@@ -1,0 +1,47 @@
+<!--
+This is an example inside a grid class and form.
+Style inspired by: https://css-tricks.com/drag-and-drop-file-uploading/
+-->
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  
+    <div class="ui-grid-row">
+          <div class="ui-grid-col-2">
+            Files:
+          </div>
+
+          <div *ngIf="!advancedUpload" class="ui-grid-col-2">
+            <input #myinput type="file" id="selectedFile" style="display: none;" (change)="fileChangeEvent($event)" multiple />
+            <button type="button" label="Select File(s)" value="Select File(s)" onclick="document.getElementById('selectedFile').click();"> </button>
+          </div>
+          <div *ngIf="!advancedUpload" class="ui-grid-col-8"></div>
+
+          <div *ngIf="advancedUpload" class="ui-grid-col-10">
+            <div class="box has-advanced-upload" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragenter)="onDragEnter($event)"
+              (dragleave)="onDragLeave($event)">
+              <input #myinput type="file" id="selectedFile" style="display: none;" (change)="fileChangeEvent($event)" multiple />
+              <label class="box__text" for="selectedFile"><strong>Select file(s) </strong><span> or drag it here</span>.</label>
+              <button type="button" style="display: none;" onclick="document.getElementById('selectedFile').click();"> </button>
+              <!--
+              if you want draggable elements... not the case...
+              <div draggable="true" (dragstart)="onDragStart($event, dragData)"></div>
+              -->
+            </div>
+          </div>
+   </div>
+   
+   <!-- if you want to list the files...do something like this...(using angular material components lib)
+        <md-list>
+          <md-list-item *ngFor="let file of filesToUpload">
+            <md-icon md-list-icon md-font-icon="fa-file-o" class="fa fa-file-o"></md-icon>
+            <h3 md-line>{{file.name}}</h3>
+            <p md-line> Tamanho: {{file.size}} bytes </p>
+            <button (click)="removeFile(file)"></button>
+            <md-divider md-line></md-divider>
+          </md-list-item>
+        </md-list>
+   -->
+   
+  </form>
+</div>
